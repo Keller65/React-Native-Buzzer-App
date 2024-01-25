@@ -48,7 +48,7 @@ export default function App() {
     let intervalId;
 
     if (isPressedStart) {
-      intervalId = setInterval(iniciarContador, 65);
+      intervalId = setInterval(iniciarContador, 63);
     }
 
     return () => {

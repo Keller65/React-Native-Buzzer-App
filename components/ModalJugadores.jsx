@@ -31,7 +31,7 @@ export function ModalPlayer({ closeModal, handleImageSelect }) {
           style={styles.CardPlayer}
           onPress={() => {
             handleImageSelect({
-              image: require('../assets/samy.jpeg'),
+              image: require('../assets/samy.jpg'),
               playerName: 'S. Palacios'
             });
             closeModal();
@@ -39,7 +39,7 @@ export function ModalPlayer({ closeModal, handleImageSelect }) {
         >
           <Image
             style={styles.ImagePlayer}
-            source={require('../assets/samy.jpeg')}
+            source={require('../assets/samy.jpg')}
           />
           <View>
             <Text>S. Palacios</Text>
@@ -51,19 +51,19 @@ export function ModalPlayer({ closeModal, handleImageSelect }) {
           style={styles.CardPlayer}
           onPress={() => {
             handleImageSelect({
-              image: require('../assets/luka.webp'),
-              playerName: 'L. Dončić'
+              image: require('../assets/david.jpg'),
+              playerName: 'D. Mata'
             });
             closeModal();
           }}
         >
           <Image
             style={styles.ImagePlayer}
-            source={require('../assets/luka.webp')}
+            source={require('../assets/david.jpg')}
           />
           <View>
-            <Text>L. Dončić</Text>
-            <Text>Base</Text>
+            <Text>D. Mata</Text>
+            <Text>Pivot</Text>
           </View>
         </TouchableOpacity>
 

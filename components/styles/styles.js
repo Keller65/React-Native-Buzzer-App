@@ -37,11 +37,13 @@ const styles = StyleSheet.create({
 
   Clock: {
     fontSize: 50,
+    color: '#000',
   },
 
   milliseconds: {
     fontSize: 20,
     marginLeft: 5,
+    color: '#000',
   },
 
   ContainerButtons: {
@@ -140,7 +142,8 @@ const styles = StyleSheet.create({
   },
 
   PointsPlayer: {
-    fontSize: 18
+    fontSize: 18,
+    color: '#000',
   },
 
   ReloadButton: {
