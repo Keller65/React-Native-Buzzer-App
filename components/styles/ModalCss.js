@@ -16,6 +16,7 @@ const style = StyleSheet.create({
       BoxshadowOpacity: 2,
       BoxshadowRadius: 50,
       padding: 10,
+      position: 'absolute'
     },
   
     CardPlayer: {

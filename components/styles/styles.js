@@ -1,4 +1,8 @@
 import { StyleSheet } from "react-native";
+import { Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+console.log(width);
 
 const styles = StyleSheet.create({
   container: {
@@ -56,9 +60,9 @@ const styles = StyleSheet.create({
   },
 
   StartButtonFocus: {
-    backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: 'blue'
+    borderColor: '#8484ff',
+    backgroundColor: '#dcdcff',
   },
 
   Reset: {
@@ -67,13 +71,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 50,
     borderWidth: 1,
-    borderColor: 'red'
+    borderColor: '#ff6464'
   },
 
   ResetButtonFocus: {
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: 'red'
+    borderColor: '#ff6464'
+  },
+
+  textStartButtonFocus: {
+    color: '#8484ff'
   },
 
   textStartButton: {
@@ -81,11 +89,11 @@ const styles = StyleSheet.create({
   },
 
   textResetButton: {
-    color: 'red',
+    color: '#ff6464',
   },
 
   textResetButtonFocus: {
-    color: 'red'
+    color: '#ff6464'
   },
 
   modalBackground: {
@@ -98,10 +106,11 @@ const styles = StyleSheet.create({
   },
 
   selectedImagesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    width: width,
     marginTop: 10,
-    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20
   },
 
   selectedImage: {

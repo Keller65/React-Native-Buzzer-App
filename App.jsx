@@ -48,7 +48,7 @@ export default function App() {
     let intervalId;
 
     if (isPressedStart) {
-      intervalId = setInterval(iniciarContador, 70);
+      intervalId = setInterval(iniciarContador, 65);
     }
 
     return () => {
@@ -80,8 +80,6 @@ export default function App() {
         <TouchableOpacity
           style={[styles.StartButton, isPressedStart && styles.StartButtonFocus]}
           onPress={() => setIsPressedStart(!isPressedStart)}
-          onPressIn={() => setIsPressedStart(true)}
-          onPressOut={() => setIsPressedStart(false)}
         >
           <Text
             style={[styles.textStartButton, isPressedStart && styles.textStartButtonFocus]}
@@ -147,6 +145,7 @@ export default function App() {
                     value={playerPoints[index] ? playerPoints[index].toString() : '0'}
                     onChangeText={(text) => handlePointPress(Number(text), index)}
                   />
+
                 </>
               ) : (
                 <>
