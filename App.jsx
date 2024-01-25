@@ -144,7 +144,7 @@ export default function App() {
                   <TextInput
                     keyboardType='numeric'
                     style={styles.PointsPlayer}
-                    value={playerPoints[index] ? playerPoints[index].toString() : ''}
+                    value={playerPoints[index] ? playerPoints[index].toString() : '0'}
                     onChangeText={(text) => handlePointPress(Number(text), index)}
                   />
                 </>
@@ -153,7 +153,7 @@ export default function App() {
                   <TextInput
                     keyboardType='numeric'
                     style={styles.PointsPlayer}
-                    value={playerPoints[index] ? playerPoints[index].toString() : ''}
+                    value={playerPoints[index] ? playerPoints[index].toString() : '0'}
                     onChangeText={(text) => handlePointPress(Number(text), index)}
                   />
                   
@@ -175,21 +175,21 @@ export default function App() {
               style={PointStyle.ButtonOne}
               onPress={() => handlePointPress(1, index)}
             >
-              <Text>+1</Text>
+              <Text style={PointStyle.TextPoint}>+1</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={PointStyle.ButtonOne}
               onPress={() => handlePointPress(2, index)}
             >
-              <Text>+2</Text>
+              <Text style={PointStyle.TextPoint}>+2</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={PointStyle.ButtonOne}
               onPress={() => handlePointPress(3, index)}
             >
-              <Text>+3</Text>
+              <Text style={PointStyle.TextPoint}>+3</Text>
             </TouchableOpacity>
           </View>
         ))}

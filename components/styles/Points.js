@@ -12,13 +12,27 @@ const PointStyle = StyleSheet.create({
     },
 
     ButtonOne: {
-        backgroundColor: 'red',
-        alignItems: 'center',
         width: 40,
         height: 40,
+        borderRadius: 200,
+        backgroundColor: '#fff',
+        alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 12,
-    }, 
+        shadowColor: 'rgba(0, 0, 0, 0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 2,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.03)',
+    },
+
+    TextPoint: {
+        fontSize: 10
+    },
 
     ButtonContainer: {
         flexDirection: 'row',
