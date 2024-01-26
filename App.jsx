@@ -12,7 +12,7 @@ export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   const [playerPoints, setPlayerPoints] = useState([]);
-  const [isButtonActive, setIsButtonActive] = useState(false); 
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
 
   const iniciarContador = () => {
@@ -140,7 +140,7 @@ export default function App() {
 
       {selectedImages.length < 2 ? (
         <TouchableOpacity style={styles.UserSelected} onPress={openModal}>
-          <Text style={{fontSize: 25}}>+</Text>
+          <Text style={{ fontSize: 25 }}>+</Text>
         </TouchableOpacity>
       ) : ''}
 
@@ -222,6 +222,19 @@ export default function App() {
           </View>
         ))}
       </View>
+
+      {selectedImages.length >= 2 && (
+        <View>
+          <TouchableOpacity style={styles.SaveButton}>
+            <Image
+              source={require('./assets/save.png')}
+              style={{ height: 25, width: 25 }}
+            />
+
+            <Text>Guardar Partida</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       <StatusBar style="auto" />
     </View>

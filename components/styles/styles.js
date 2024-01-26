@@ -155,7 +155,17 @@ const styles = StyleSheet.create({
 
   TextReloadButton: {
     color: '#898900'
-  }
+  },
+
+  SaveButton: {
+    backgroundColor: 'red',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 100,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
 
 })
 
