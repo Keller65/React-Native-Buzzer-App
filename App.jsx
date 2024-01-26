@@ -140,7 +140,7 @@ export default function App() {
 
       {selectedImages.length < 2 ? (
         <TouchableOpacity style={styles.UserSelected} onPress={openModal}>
-          <Text>+</Text>
+          <Text style={{fontSize: 25}}>+</Text>
         </TouchableOpacity>
       ) : ''}
 
