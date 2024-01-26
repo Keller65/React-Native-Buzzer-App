@@ -23,9 +23,13 @@
         "backgroundColor": "#ffffff"
       }
     },
-
     "web": {
       "favicon": "./assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "310675b3-ace2-4c86-8f71-c980fe903679"
+      }
     }
   }
 }
