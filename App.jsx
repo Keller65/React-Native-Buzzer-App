@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, Modal, TouchableWithoutFeedback, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
+import { StatusBar, Modal, TouchableWithoutFeedback, Text, View, TouchableOpacity, Image, TextInput, Switch } from 'react-native';
 import { ModalPlayer } from './components/ModalJugadores';
 import styles from './components/styles/styles';
 import PointStyle from './components/styles/Points';
@@ -12,6 +12,8 @@ export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   const [playerPoints, setPlayerPoints] = useState([]);
+  const [isButtonActive, setIsButtonActive] = useState(false); 
+
 
   const iniciarContador = () => {
     if (time > 0 || milliseconds > 0) {
@@ -69,11 +71,38 @@ export default function App() {
     setPlayerPoints([0])
   }
 
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [containerColor, setContainerColor] = useState('#ffffff');
+
+  const toggleSwitch = () => {
+    const newColor = isEnabled ? '#87afff' : '#ffffff';
+    setContainerColor(newColor);
+    setIsEnabled((previousState) => !previousState);
+    setIsButtonActive((previousState) => !previousState);
+  };
+
+  const changeContainerColor = () => {
+    const newColor = isEnabled ? '#fff' : '#010018';
+    setContainerColor(newColor);
+
+  };
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: containerColor }]}>
+      <Switch
+        trackColor={{ false: '#767577', true: '#87afff' }}
+        thumbColor={isEnabled ? '#fff' : '#f4f3f4'}
+        onValueChange={() => {
+          toggleSwitch();
+          changeContainerColor();
+        }}
+        value={isEnabled}
+        style={{ position: 'absolute', left: 10, top: 10 }}
+      />
+
       <View style={styles.counterContainer}>
-        <Text style={styles.Clock}>{time}</Text>
-        <Text style={styles.milliseconds}>{milliseconds}</Text>
+        <Text style={[styles.Clock, { color: isButtonActive ? '#fff' : '#000' }]}>{time}</Text>
+        <Text style={[styles.milliseconds, { color: isButtonActive ? '#fff' : '#000' }]}>{milliseconds}</Text>
       </View>
 
       <View style={styles.ContainerButtons}>
@@ -141,7 +170,7 @@ export default function App() {
 
                   <TextInput
                     keyboardType='numeric'
-                    style={styles.PointsPlayer}
+                    style={[styles.PointsPlayer, { color: isButtonActive ? '#fff' : '#000' }]}
                     value={playerPoints[index] ? playerPoints[index].toString() : '0'}
                     onChangeText={(text) => handlePointPress(Number(text), index)}
                   />
@@ -151,11 +180,11 @@ export default function App() {
                 <>
                   <TextInput
                     keyboardType='numeric'
-                    style={styles.PointsPlayer}
+                    style={[styles.PointsPlayer, { color: isButtonActive ? '#fff' : '#000' }]}
                     value={playerPoints[index] ? playerPoints[index].toString() : '0'}
                     onChangeText={(text) => handlePointPress(Number(text), index)}
                   />
-                  
+
                   <View style={styles.CardGamePlay}>
                     <Image key={index} style={styles.selectedImage} source={Player.image} />
                     <Text style={styles.PlayerName}>{Player.playerName}</Text>
