@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Buzzer",
-    "slug": "aerley_app",
-    "version": "1.0.1",
+    "slug": "Buzzer",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -29,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "018003fe-f12f-45a1-bdc2-f19138362918"
+        "projectId": "52edf36b-23f3-432b-abe9-7e50d9baa12b"
       }
     }
   }

@@ -3,6 +3,8 @@ import { StatusBar, Modal, TouchableWithoutFeedback, Text, View, TouchableOpacit
 import { ModalPlayer } from './components/ModalJugadores';
 import styles from './components/styles/styles';
 import PointStyle from './components/styles/Points';
+import ModalGuardarPartida from './components/ModalGuardarPartida';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
   const [time, setTime] = useState(14);
@@ -13,7 +15,17 @@ export default function App() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [playerPoints, setPlayerPoints] = useState([]);
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [savedGameData, setSavedGameData] = useState(null);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [containerColor, setContainerColor] = useState('#ffffff');
 
+  const eliminarPartida = async (index) => {
+    const nuevasPartidas = [...savedGameData];
+    nuevasPartidas.splice(index, 1);
+    setSavedGameData(nuevasPartidas);
+    await AsyncStorage.removeItem('partidasGuardadas');
+  };
 
   const iniciarContador = () => {
     if (time > 0 || milliseconds > 0) {
@@ -71,9 +83,6 @@ export default function App() {
     setPlayerPoints([0])
   }
 
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [containerColor, setContainerColor] = useState('#ffffff');
-
   const toggleSwitch = () => {
     const newColor = isEnabled ? '#87afff' : '#ffffff';
     setContainerColor(newColor);
@@ -87,6 +96,40 @@ export default function App() {
 
   };
 
+  const abrirModal = () => {
+    setModalVisible(true);
+  };
+
+  const cerrarModal = () => {
+    setModalVisible(false);
+  };
+
+  const guardarPartida = async () => {
+    try {
+      const nuevaPartida = {
+        images: selectedImages || [],
+        playerData: (selectedImages || []).map((player, index) => ({
+          playerName: player?.playerName || '',
+          points: playerPoints[index] ?? 0,
+          image: player?.image || null,
+        })),
+      };
+  
+      setSavedGameData((prevSavedGameData) => [...(prevSavedGameData || []), nuevaPartida]);
+  
+      const partidasGuardadas = JSON.parse(await AsyncStorage.getItem('partidasGuardadas')) || [];
+      const nuevaListaPartidas = [...partidasGuardadas, nuevaPartida];
+  
+      await AsyncStorage.setItem('partidasGuardadas', JSON.stringify(nuevaListaPartidas));
+
+      console.log(partidasGuardadas.length)
+
+      cerrarModal();
+    } catch (error) {
+      console.error('Error al guardar la partida:', error);
+    }
+  };   
+
   return (
     <View style={[styles.container, { backgroundColor: containerColor }]}>
       <Switch
@@ -99,6 +142,25 @@ export default function App() {
         value={isEnabled}
         style={{ position: 'absolute', left: 10, top: 10 }}
       />
+
+      <TouchableOpacity
+        style={{ position: 'absolute', right: 20, top: 20 }}
+        onPress={abrirModal}
+      >
+        <Image
+          style={{ height: 30, width: 30 }}
+          source={require('./assets/inbox.png')}
+        />
+      </TouchableOpacity>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={cerrarModal}
+      >
+        <ModalGuardarPartida savedGameData={savedGameData} cerrarModal={cerrarModal} eliminarPartida={eliminarPartida} />
+      </Modal>
 
       <View style={styles.counterContainer}>
         <Text style={[styles.Clock, { color: isButtonActive ? '#fff' : '#000' }]}>{time}</Text>
@@ -224,16 +286,17 @@ export default function App() {
       </View>
 
       {selectedImages.length >= 2 && (
-        <View>
-          <TouchableOpacity style={styles.SaveButton}>
-            <Image
-              source={require('./assets/save.png')}
-              style={{ height: 25, width: 25 }}
-            />
+        <TouchableOpacity
+          style={styles.SaveButton}
+          onPress={guardarPartida}
+        >
+          <Image
+            source={require('./assets/save.png')}
+            style={{ height: 25, width: 25 }}
+          />
+          <Text style={{ color: '#DCDCFF' }}>Guardar Partida</Text>
+        </TouchableOpacity>
 
-            <Text>Guardar Partida</Text>
-          </TouchableOpacity>
-        </View>
       )}
 
       <StatusBar style="auto" />

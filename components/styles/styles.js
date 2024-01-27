@@ -158,12 +158,20 @@ const styles = StyleSheet.create({
   },
 
   SaveButton: {
-    backgroundColor: 'red',
+    backgroundColor: '#7b60fe',
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 100,
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 10,
+    marginTop: 30
+  },
+
+  statistics: {
+    backgroundColor: '#fff',
+    width: '100%',
+    height: '100%',
     gap: 10,
   },
 
